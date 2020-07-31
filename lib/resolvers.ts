@@ -59,4 +59,8 @@ const Query: Required<QueryResolvers<ResolverContext>> = {
   },
 }
 
-export default { Query }
+const resolvers: { Query: QueryResolvers } = {
+  Query
+}
+
+export default resolvers
