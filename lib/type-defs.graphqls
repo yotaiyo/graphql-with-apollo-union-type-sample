@@ -6,4 +6,30 @@ type User {
 
 type Query {
   viewer: User!
+  companyPageLayout(id: ID!): CompanyPageLayout
+}
+
+type CompanyPageLayout {
+  id: ID!
+  infos: [CompanyInfo!]!
+}
+
+union CompanyInfo = Product | Officer | QuestionAndAnswer
+
+type Product {
+  id: ID!
+  title: String!
+  url: String!
+}
+
+type Officer {
+  id: ID!
+  firstName: String!
+  lastName: String!
+}
+
+type QuestionAndAnswer {
+  id: ID!
+  question: String!
+  answer: String!
 }
