@@ -4,8 +4,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "codegen": "graphql-let",
-    "fragmentTypes": "graphql-codegen --config codegen.yml",
+    "codegen": "graphql-let && graphql-codegen --config codegen.yml",
     "dev": "yarn codegen && next",
     "build": "yarn codegen && next build",
     "start": "next start"
