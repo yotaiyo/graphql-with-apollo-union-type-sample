@@ -1,4 +1,4 @@
-import { QueryResolvers, Resolvers, CompanyInfo, Product, Officer, QuestionAndAnswer } from './type-defs.graphqls'
+import { QueryResolvers, Resolvers, CompanyInfo, Product, Officer, QuestionAndAnswer, CompanyPageLayoutResolvers } from './type-defs.graphqls'
 
 const companyInfo_1: CompanyInfo = {
   id: '1',
@@ -43,14 +43,16 @@ const queryResolvers: QueryResolvers = {
   },
   companyPageLayout(_parent, _args, _context, _info) {
     const target = [companyPageLayout_1, companyPageLayout_2].find(e => e.id === _args.id)
+    return target ? target : null
+  }
+}
 
-    if (!target) {
-      return null
-    }
-
-    const companyInfos = target.companyInfos
-
-    const mappedCompanyInfos = companyInfos.map(e => {
+const companyPageLayoutResolver: CompanyPageLayoutResolvers = {
+  id(_parent, _args, _context, _info) {
+    return _parent.id
+  },
+  companyInfos(_parent, _args, _context, _info) {
+    const mappedCompanyInfos = _parent.companyInfos.map(e => {
       if (isProduct(e)) {
         return { __typename: 'Product', ...e } as Product
       }
@@ -65,13 +67,13 @@ const queryResolvers: QueryResolvers = {
 
       return e
     })
-
-    return { id: target.id, companyInfos: mappedCompanyInfos }
+    return mappedCompanyInfos
   }
 }
 
 const resolvers: Resolvers = {
-  Query: queryResolvers
+  Query: queryResolvers,
+  CompanyPageLayout: companyPageLayoutResolver
 }
 
 export default resolvers
