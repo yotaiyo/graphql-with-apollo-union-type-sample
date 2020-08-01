@@ -4,5 +4,6 @@ import resolvers from './resolvers'
 
 export const schema = makeExecutableSchema({
   typeDefs,
+  // @ts-ignore
   resolvers,
 })
