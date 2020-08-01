@@ -1,4 +1,4 @@
-# nextjs-graohql-union-typeguard-sample
+# nextjs-graohql-union-type-sample
 
 ## sample query
 ```
