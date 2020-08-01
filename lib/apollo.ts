@@ -1,7 +1,8 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { useMemo } from 'react'
 import { ApolloClient } from 'apollo-client'
-import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory'
+import { InMemoryCache, NormalizedCacheObject, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory'
+import introspectionQueryResultData from '../fragmentTypes.json'
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined
 
@@ -24,11 +25,18 @@ function createIsomorphLink(context: ResolverContext = {}) {
   }
 }
 
+// IntrospectionFragmentMatcher
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData
+})
+// InMemoryCache
+const cache = new InMemoryCache({ fragmentMatcher })
+
 function createApolloClient(context?: ResolverContext) {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: createIsomorphLink(context),
-    cache: new InMemoryCache(),
+    cache: cache,
   })
 }
 

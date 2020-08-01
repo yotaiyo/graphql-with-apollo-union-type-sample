@@ -1,18 +1,13 @@
-import Link from 'next/link'
-import { useViewerQuery, ViewerDocument } from '../lib/viewer.graphql'
+import { useCompanyPageLayoutQuery, CompanyPageLayoutDocument } from '../lib/companyPageLayout.graphql'
 import { initializeApollo } from '../lib/apollo'
 
 const Index = () => {
-  const { data } = useViewerQuery()
-  const { viewer } = data!
+  const { data } = useCompanyPageLayoutQuery()
+  console.log(data)
 
   return (
     <div>
-      You're signed in as {viewer.name} and you're {viewer.status} go to the{' '}
-      <Link href="/about">
-        <a>about</a>
-      </Link>{' '}
-      page.
+      test
     </div>
   )
 }
@@ -21,7 +16,7 @@ export async function getStaticProps() {
   const apolloClient = initializeApollo()
 
   await apolloClient.query({
-    query: ViewerDocument,
+    query: CompanyPageLayoutDocument,
   })
 
   return {
