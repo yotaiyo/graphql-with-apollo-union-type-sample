@@ -1,4 +1,4 @@
-import { QueryResolvers, CompanyPageLayout, Resolvers, CompanyInfo } from './type-defs.graphqls'
+import { QueryResolvers, CompanyPageLayout, Resolvers, CompanyInfo, CompanyInfoResolvers } from './type-defs.graphqls'
 
 const companyInfo_1: CompanyInfo = {
   id: '1',
@@ -23,12 +23,12 @@ const companyInfo_3: CompanyInfo = {
 
 const companyPageLayout_1: CompanyPageLayout = {
   id: '1',
-  infos: [companyInfo_1, companyInfo_2, companyInfo_3]
+  companyInfos: [companyInfo_1, companyInfo_2, companyInfo_3]
 }
 
 const companyPageLayout_2: CompanyPageLayout = {
   id: '2',
-  infos: [companyInfo_3, companyInfo_1, companyInfo_2]
+  companyInfos: [companyInfo_3, companyInfo_1, companyInfo_2]
 }
 
 const queryResolvers: QueryResolvers = {
@@ -41,8 +41,15 @@ const queryResolvers: QueryResolvers = {
   },
 }
 
+const companyInfoResolvers: CompanyInfoResolvers = {
+  __resolveType(obj) {
+    return obj.__typename || null
+  }
+}
+
 const resolvers: Resolvers = {
-  Query: queryResolvers
+  Query: queryResolvers,
+  CompanyInfo: companyInfoResolvers
 }
 
 export default resolvers

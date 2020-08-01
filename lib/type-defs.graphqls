@@ -11,7 +11,7 @@ type Query {
 
 type CompanyPageLayout {
   id: ID!
-  infos: [CompanyInfo!]!
+  companyInfos: [CompanyInfo!]!
 }
 
 union CompanyInfo = Product | Officer | QuestionAndAnswer
