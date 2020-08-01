@@ -1160,7 +1160,7 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@graphql-codegen/cli@^1.15.1":
+"@graphql-codegen/cli@^1.17.6":
   version "1.17.6"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/cli/-/cli-1.17.6.tgz#c6ff046a8aa0c29c965ed55dd937c87065a217d5"
   integrity sha512-whJYs0+4oz40rfzUHWbSl56ZAejQdEabIhyrI8KeMUt3xzQrNjnk1rIrbPca8wadjU8gTrfEfP+QJJ2g0psA/w==
@@ -1217,6 +1217,14 @@
     "@graphql-codegen/plugin-helpers" "1.17.6"
     "@graphql-tools/merge" "^6.0.0"
     "@graphql-tools/utils" "^6.0.0"
+    tslib "~2.0.0"
+
+"@graphql-codegen/fragment-matcher@^1.17.6":
+  version "1.17.6"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/fragment-matcher/-/fragment-matcher-1.17.6.tgz#e4f0952b0908f852f4e2f9b036342dd6d839935c"
+  integrity sha512-h/V8QdR+lJbcK3GdYBt7vjwD/DsfHfIzdjPvjvNPRnAWjbqgxF7dyz+SAAb5RTVG9AiHRaZEofFIUfCLmCsqNg==
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "1.17.6"
     tslib "~2.0.0"
 
 "@graphql-codegen/plugin-helpers@1.17.6", "@graphql-codegen/plugin-helpers@^1.15.1":

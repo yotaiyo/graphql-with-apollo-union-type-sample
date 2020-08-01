@@ -1,0 +1,21 @@
+{
+  "__schema": {
+    "types": [
+      {
+        "kind": "UNION",
+        "name": "CompanyInfo",
+        "possibleTypes": [
+          {
+            "name": "Product"
+          },
+          {
+            "name": "Officer"
+          },
+          {
+            "name": "QuestionAndAnswer"
+          }
+        ]
+      }
+    ]
+  }
+}
