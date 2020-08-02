@@ -1,4 +1,4 @@
-import { QueryResolvers, Resolvers, CompanyInfo, Product, Officer, QuestionAndAnswer, CompanyPageLayoutResolvers } from './type-defs.graphqls'
+import { QueryResolvers, Resolvers, CompanyInfo, CompanyInfoResolvers } from './type-defs.graphqls'
 
 const companyInfo_1: CompanyInfo = {
   id: '1',
@@ -47,33 +47,24 @@ const queryResolvers: QueryResolvers = {
   }
 }
 
-const companyPageLayoutResolver: CompanyPageLayoutResolvers = {
-  id(_parent, _args, _context, _info) {
-    return _parent.id
-  },
-  companyInfos(_parent, _args, _context, _info) {
-    const mappedCompanyInfos = _parent.companyInfos.map(e => {
-      if (isProduct(e)) {
-        return { __typename: 'Product', ...e } as Product
-      }
-
-      if (isOfficer(e)) {
-        return { __typename: 'Officer', ...e } as Officer
-      }
-
-      if (isQuestionAndAnswer(e)) {
-        return { __typename: 'QuestionAndAnswer', ...e } as QuestionAndAnswer
-      }
-
-      return e
-    })
-    return mappedCompanyInfos
+const companyInfoResolvers: CompanyInfoResolvers = {
+  __resolveType(_companyInfo, _context, _info) {
+    if (isProduct(_companyInfo)) {
+      return 'Product'
+    }
+    if (isOfficer(_companyInfo)) {
+      return 'Officer'
+    }
+    if (isQuestionAndAnswer(_companyInfo)) {
+      return 'QuestionAndAnswer'
+    }
+    else return null
   }
 }
 
 const resolvers: Resolvers = {
   Query: queryResolvers,
-  CompanyPageLayout: companyPageLayoutResolver
+  CompanyInfo: companyInfoResolvers
 }
 
 export default resolvers
