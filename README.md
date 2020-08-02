@@ -1,4 +1,4 @@
-# nextjs-graohql-union-type-sample
+# graphql-with-apollo-union-type-sample
 
 ## sample query
 ```
